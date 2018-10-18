@@ -1,0 +1,6 @@
+[package]
+name = "nth_fibonacci"
+version = "0.1.0"
+authors = ["Arnav Borborah <arnavborborah11@gmail.com>"]
+
+[dependencies]
