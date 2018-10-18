@@ -1,7 +1,7 @@
 # Rust Learning
 
-This repository contains programs that I have made in the process of learning the
-Rust programming language. Many of the programs here are from the [Rust book](https://doc.rust-lang.org/book/2018-edition/) (2018 edition),
+This repository contains various programs that I have made in order to learn the Rust
+programming language. Many of them are exercises from the [Rust book](https://doc.rust-lang.org/book/2018-edition/) (2018 edition),
 while others are simply toy programs I wanted to make. :smiley:
 
 ## Directory Structure
