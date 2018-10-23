@@ -1,0 +1,21 @@
+language: rust
+
+branches:
+  only:
+    - master
+
+cache: cargo
+
+rust:
+  - nightly
+  - beta
+  - 1.29.2
+
+matrix:
+  allow_failures:
+    - rust:
+       - nightly
+       - beta
+  fast_finish: true
+
+script: ./check_all.sh
