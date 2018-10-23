@@ -10,7 +10,8 @@ fn main() {
     println!("[2] Celsius to Fahrenheit");
     
     let choice: u32 = loop {
-        let value = read_value_from_input("> ", "Please enter a valid integer!");
+        let value = read_value("> ", "Please enter a valid positive integer!")
+            .expect("An IO stream error occurred!");
         
         if value == 1 || value == 2 {
             break value;
@@ -18,40 +19,29 @@ fn main() {
         println!("Please enter a valid choice (0 or 1)!");
     };
 
+    let temperature: f64 = read_value("Enter the temperature to convert: ",
+        "Please enter a valid floating point number!")
+        .expect("An IO stream error occurred!");
+
     if choice == 1 {
-        let temperature: f64 = read_value_from_input("Enter the temperature to convert: ",
-            "Please enter a valid floating point variable!");
-        
         println!("{:.2} °F is {:.2} °C.", temperature, (temperature - 32f64) * 5f64 / 9f64);
-
-    } else if choice == 2 {
-        let temperature: f64 = read_value_from_input("Enter the temperature to convert: ",
-            "Please enter a valid floating point variable!");
-        
-        println!("{:.2} °C is {:.2} °F.", temperature, temperature * 9f64 / 5f64 + 32f64);
-
     } else {
-        println!("{} was not a valid choice!", choice);
+        println!("{:.2} °C is {:.2} °F.", temperature, temperature * 9f64 / 5f64 + 32f64);
     }
 }
 
-fn read_value_from_input<T: FromStr>(prompt: &str, error_message: &str) -> T {
-    let result: T = loop {
+fn read_value<T: FromStr>(prompt: &str, error_message: &str) -> Result<T, io::Error> {
+    loop {
         print!("{}", prompt);
-        io::stdout().flush().expect("Unable to flush STDOUT!");
+        io::stdout().flush()?;
         
-        let mut input_value = String::new();
+        let mut result = String::new();
         
-        io::stdin().read_line(&mut input_value)
-            .expect(error_message);
+        io::stdin().read_line(&mut result)?;
         
-        match input_value.trim().parse() {
-            Ok(value) => break value,
-            Err(_) => {
-                println!("{}", error_message);
-                continue;
-            }
+        match result.trim().parse() {
+            Ok(value) => return Ok(value),
+            Err(_) => println!("{}", error_message)
         }
-    };
-    result
+    }
 }
