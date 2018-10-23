@@ -13,9 +13,8 @@ rust:
 
 matrix:
   allow_failures:
-    - rust:
-       - nightly
-       - beta
+    - rust: nightly
+    - rust: beta
   fast_finish: true
 
 script: ./check_all.sh
