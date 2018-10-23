@@ -3,18 +3,15 @@ use std::io::{self, Write};
 fn main() {
     let input: u64 = loop {
         print!("Enter a positive integer: ");
-        io::stdout().flush().expect("Unable to flush STDOUT!");
+        io::stdout().flush().expect("Unable to flush stdout!");
 
         let mut result = String::new();
     
-        io::stdin().read_line(&mut result).expect("Unable to read input!");
+        io::stdin().read_line(&mut result).expect("Unable to read input from stdin!");
         
         match result.trim().parse() {
             Ok(number) => break number,
-            Err(_) => {
-                println!("The value you entered was not a valid positive integer!");
-                continue;
-            }
+            Err(_) => println!("The value you entered was not a valid positive integer!")
         }   
     };
     
