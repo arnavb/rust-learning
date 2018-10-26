@@ -13,13 +13,13 @@ def execute_command(command, path):
     return exit_code, stdout, stderr
 
 def main():
-    for directory in filter(lambda path: path.is_dir() and path.name[0] != '.',
+    for directory in filter(lambda path: (path / 'Cargo.toml').exists(),
                             Path.cwd().glob('*/')):
         
         print("Checking project: {}".format(directory))
         
         exit_code, _, stderr = execute_command(['cargo', 'check'],
-                                                    directory)
+                                               directory)
         if exit_code != 0:
             print('Error! {} does not compile correctly '
                   '(Exit code: {})'.format(directory, exit_code))
