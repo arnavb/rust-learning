@@ -17,4 +17,9 @@ matrix:
     - rust: beta
   fast_finish: true
 
-script: ./check_all.sh
+addons:
+  apt:
+    packages:
+      - python3 # Needed for check_all.py
+
+script: python3 check_all.py
