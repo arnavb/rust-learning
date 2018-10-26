@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 from pathlib import Path
-from subprocess import call, Popen, PIPE
+from subprocess import Popen, PIPE
 import sys
 
 

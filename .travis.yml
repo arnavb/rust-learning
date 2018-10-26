@@ -22,4 +22,4 @@ addons:
     packages:
       - python3 # Needed for check_all.py
 
-script: python3 check_all.py
+script: ./check_all.py
