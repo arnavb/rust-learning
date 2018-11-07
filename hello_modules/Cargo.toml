@@ -1,0 +1,6 @@
+[package]
+name = "hello_modules"
+version = "0.1.0"
+authors = ["Arnav Borborah <arnavborborah11@gmail.com>"]
+
+[dependencies]
