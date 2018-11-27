@@ -50,7 +50,7 @@ fn get_file_contents(passed_argument: &str) -> Result<String, Box<error::Error>>
     let mut resolved_path = PathBuf::from(passed_argument);
     
     if !resolved_path.exists() || !resolved_path.is_file() {
-        resolved_path = PathBuf::from(env::current_dir()?);
+        resolved_path = env::current_dir()?;
         resolved_path.push(passed_argument);
         
         if !resolved_path.exists() || !resolved_path.is_file() {
