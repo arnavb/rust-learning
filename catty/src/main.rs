@@ -32,22 +32,15 @@ fn cli(cli_args: Vec<String>) -> Result<(), Box<error::Error>> {
         .get_matches_from_safe(cli_args)?;
 
     let file_contents = get_file_contents(matches.value_of("FILE").unwrap())?;
-    let file_contents: Vec<&str> = file_contents.split("\n").collect();
     
     let number_lines = matches.is_present("number");
     
-    for (i, line) in file_contents.iter().enumerate() {
-        let formatted_line = if number_lines {
+    for (i, line) in file_contents.lines().enumerate() {
+        println!("{}", if number_lines {
             format!("{:>6}  {}", i + 1, line)
         } else {
             line.to_string()
-        };
-
-        if i == file_contents.len() - 1 && line.len() > 0 {
-            print!("{}", formatted_line);
-        } else if !(i == file_contents.len() - 1 && line.len() == 0) {
-            println!("{}", formatted_line);
-        }
+        });
     }
     
     Ok(())
